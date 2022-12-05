@@ -79,6 +79,7 @@ and try below command in terminal
 |---|---|---|
 |`GET`|http://localhost:8080/ | Root page |
 |`GET`|http://localhost:8080/swagger-ui/index.html | Swagger UI page |
+|`GET`|http://localhost:8080/actuator | Actuator page |
 
 #### Booking Service
 
