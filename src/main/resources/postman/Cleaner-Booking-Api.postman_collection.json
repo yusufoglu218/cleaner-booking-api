@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "c9da37e7-301c-4eaa-b725-0fbb552b8e96",
+		"name": "Cleaner-Booking-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5964356"
+	},
+	"item": [
+		{
+			"name": "cleaner-service",
+			"item": [
+				{
+					"name": "cleaner/available",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/cleaner/available?date=2022-12-06T20:00:00.000&startTime=2022-12-06T08:00:00.000&duration=2&numberOfCleaner=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cleaner",
+								"available"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2022-12-06T20:00:00.000"
+								},
+								{
+									"key": "startTime",
+									"value": "2022-12-06T08:00:00.000"
+								},
+								{
+									"key": "duration",
+									"value": "2"
+								},
+								{
+									"key": "numberOfCleaner",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "booking/save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"customerId\": \"32\",\r\n    \"cleanerIds\": [\"15\", \"16\"],\r\n    \"startTime\": \"2022-12-06T14:00:00.000\",\r\n    \"duration\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/booking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "booking/update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"startTime\": \"2022-12-06T10:00:00.000\",\r\n    \"duration\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/booking/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "booking/id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"startTime\": \"2022-12-05T10:00:00.000\",\r\n    \"duration\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/booking/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
