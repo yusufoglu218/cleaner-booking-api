@@ -9,16 +9,22 @@ Cleaner Booking rest api that includes cleaner and booking operations using spri
 - [MySql DB](https://www.mysql.com/downloads/)
 
 
+##  Build and Run application
+
+### Setup database tables
+- Run sql scripts in the [create_table.sql](src/main/resources/sql/create_table.sql) to create tables.
+- To add sample data [insert_data.sql](src/main/resources/sql/insert_data.sql) can be used.
+
 ###  Build and Run application
-_GOTO >_ **~/absolute-path-to-directory/cleaner-booking-api**  
+-   _GOTO >_ **~/absolute-path-to-directory/cleaner-booking-api**  
 and try below command in terminal
-> **```mvn spring-boot:run```** it will run application as spring boot application
+    > **```mvn spring-boot:run```** it will run application as spring boot application
 
-or
-> **```mvn clean install```** it will build application and create **jar** file under target directory
+    or
+    > **```mvn clean install```** it will build application and create **jar** file under target directory
 
-Run jar file from below path with given command
-> **```java -jar ~/path-to-recipe-service/target/cleaner-booking-api-0.0.1-SNAPSHOT.jar```**
+    Run jar file from below path with given command
+    > **```java -jar ~/path-to-recipe-service/target/cleaner-booking-api-0.0.1-SNAPSHOT.jar```**
 
 ### Model class
    Below are the model classes to perform database operations.  
@@ -67,7 +73,7 @@ Run jar file from below path with given command
 
 ### Endpoints
 
-#### HTML
+#### Swagger and root
 
 |HTTP Method|URL|Description|
 |---|---|---|
