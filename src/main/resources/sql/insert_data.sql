@@ -188,11 +188,3 @@ INSERT INTO `cleaner_db`.`time_period` ( `start_time`, `end_time`, `status`) VAL
 INSERT INTO `cleaner_db`.`time_period` ( `start_time`, `end_time`, `status`) VALUES ('2022-12-11 21:00:00', '2022-12-11 21:30:00','a');
 INSERT INTO `cleaner_db`.`time_period` ( `start_time`, `end_time`, `status`) VALUES ('2022-12-11 21:30:00', '2022-12-11 22:00:00','a');
 
-INSERT INTO `cleaner_db`.`Booking` (`customer_id`) VALUES ('24');
-INSERT INTO `cleaner_db`.`Booking` ( `customer_id`) VALUES ('25');
-
-INSERT INTO `cleaner_db`.`booking_time_period` ( `booking_id`, `time_period_id`) VALUES ('2', '18');
-INSERT INTO `cleaner_db`.`booking_time_period` ( `booking_id`, `time_period_id`) VALUES ('2', '19');
-INSERT INTO `cleaner_db`.`booking_time_period` ( `booking_id`, `time_period_id`) VALUES ('2', '20');
-INSERT INTO `cleaner_db`.`booking_time_period` ( `booking_id`, `time_period_id`) VALUES ('2', '21');
-
