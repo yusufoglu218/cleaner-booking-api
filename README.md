@@ -90,4 +90,6 @@ Run jar file from below path with given command
 
 ### Database ER Diagram
 
-![alt text] (https://github.com/yusufoglu218/cleaner-booking-api/blob/7fb43212edd72da3e6fdc946c0f67f9be427945e/src/main/resources/images/db_table_diagram.png?raw=true)
+The ER Diagram of Database that is designed by requirements 
+
+![](src/main/resources/images/db_table_diagram.png)
