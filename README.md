@@ -24,7 +24,7 @@ and try below command in terminal
     > **```mvn clean install```** it will build application and create **jar** file under target directory
 
     Run jar file from below path with given command
-    > **```java -jar ~/path-to-recipe-service/target/cleaner-booking-api-0.0.1-SNAPSHOT.jar```**
+    > **```java -jar ~/path-to-cleaner-booking-api/target/cleaner-booking-api-0.0.1-SNAPSHOT.jar```**
 
 ### Model class
    Below are the model classes to perform database operations.  
