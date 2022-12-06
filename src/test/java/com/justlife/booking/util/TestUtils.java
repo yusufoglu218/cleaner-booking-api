@@ -4,6 +4,7 @@ import com.justlife.booking.constant.Constants;
 import com.justlife.booking.constant.TestConstants;
 import com.justlife.booking.dto.BookingSaveRequest;
 import com.justlife.booking.dto.BookingUpdateRequest;
+import com.justlife.booking.dto.GetBookingResponse;
 import com.justlife.booking.model.Booking;
 import com.justlife.booking.model.BookingCleaner;
 import com.justlife.booking.model.BookingTimePeriod;
@@ -33,6 +34,14 @@ public class TestUtils {
         return bookingCleanerList;
     }
 
+    public static List<BookingCleaner> createBookingCleanerList() {
+        List<BookingCleaner> bookingCleanerList = new ArrayList<>();
+        bookingCleanerList.add(BookingCleaner.builder().id(TestConstants.BOOKING_CLEANER_ID).bookingId(TestConstants.BOOKING_ID).cleanerId(TestConstants.CLEANER_ID_LIST.get(0)).build());
+        bookingCleanerList.add(BookingCleaner.builder().id(TestConstants.BOOKING_CLEANER_ID).bookingId(TestConstants.BOOKING_ID).cleanerId(TestConstants.CLEANER_ID_LIST.get(1)).build());
+        bookingCleanerList.add(BookingCleaner.builder().id(TestConstants.BOOKING_CLEANER_ID).bookingId(TestConstants.BOOKING_ID).cleanerId(TestConstants.CLEANER_ID_LIST.get(2)).build());
+        return bookingCleanerList;
+    }
+
     public static BookingCleaner createBookingCleaner() {
         return BookingCleaner.builder().id(TestConstants.BOOKING_CLEANER_ID).bookingId(TestConstants.BOOKING_ID).cleanerId(TestConstants.CLEANER_ID_LIST.get(0)).build();
     }
@@ -46,11 +55,26 @@ public class TestUtils {
                 .build();
     }
 
+    public static GetBookingResponse createGetBookingResponse() {
+        return GetBookingResponse.builder()
+                .bookingId(TestConstants.BOOKING_ID)
+                .customerId(TestConstants.CUSTOMER_ID)
+                .cleanerIds(TestConstants.CLEANER_ID_LIST)
+                .startTime(LocalDateTime.parse(TestConstants.START_TIME, TestConstants.DATE_TIME_FORMATTER))
+                .duration(TestConstants.DURATION)
+                .build();
+    }
+
     public static BookingUpdateRequest createBookingUpdateRequest() {
         return BookingUpdateRequest.builder()
                 .startTime(LocalDateTime.parse(TestConstants.START_TIME, TestConstants.DATE_TIME_FORMATTER))
                 .duration(TestConstants.DURATION)
                 .build();
+    }
+
+    public static TimePeriod createTimePeriod() {
+        LocalDateTime startTime = LocalDateTime.parse(TestConstants.START_TIME, TestConstants.DATE_TIME_FORMATTER);
+        return TimePeriod.builder().id(TestConstants.TIME_PERIOD_ID_LIST.get(0)).startTime(startTime).endTime(startTime.plusMinutes(Constants.WORKING_TIME_SLOT)).build();
     }
 
     public static List<TimePeriod> createTimePeriodList() {

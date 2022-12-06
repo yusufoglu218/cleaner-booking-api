@@ -1,13 +1,16 @@
 package com.justlife.booking.service;
 
+import com.justlife.booking.constant.Constants;
 import com.justlife.booking.dto.BookingSaveRequest;
 import com.justlife.booking.dto.BookingUpdateRequest;
+import com.justlife.booking.dto.GetBookingResponse;
 import com.justlife.booking.exception.ErrorType;
 import com.justlife.booking.exception.RecordNotFoundException;
 import com.justlife.booking.mapper.BookingMapper;
 import com.justlife.booking.model.Booking;
 import com.justlife.booking.model.BookingCleaner;
 import com.justlife.booking.model.BookingTimePeriod;
+import com.justlife.booking.model.Cleaner;
 import com.justlife.booking.model.TimePeriod;
 import com.justlife.booking.repository.BookingCleanerRepository;
 import com.justlife.booking.repository.BookingRepository;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of BookingService
@@ -55,7 +59,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking updateBooking(Long id, BookingUpdateRequest bookingUpdateRequest) {
-        Booking bookingCurrentFromDb = getBookingById(id);
+        Booking bookingCurrentFromDb = bookingRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(ErrorType.BOOKING_NOT_FOUND + id.toString()));
 
         // deactivate current BookingTimePeriod records
         List<BookingTimePeriod> bookingTimePeriodsToDeactivate = bookingTimePeriodService.getBookingTimePeriodListByBookingId(id);
@@ -71,8 +75,16 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking getBookingById(Long id) {
-        return bookingRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(ErrorType.BOOKING_NOT_FOUND + id.toString()));
+    public GetBookingResponse getBookingDetailById(Long id) {
+        Booking bookingFromDb =  bookingRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(ErrorType.BOOKING_NOT_FOUND + id.toString()));
+
+        List<BookingTimePeriod> bookingTimePeriodList = bookingTimePeriodService.getBookingTimePeriodListByBookingId(id);
+        List<Long> cleanerIds = bookingCleanerRepository.getBookingBookingCleanerByBookingId(id).stream().map(BookingCleaner::getCleanerId).collect(Collectors.toList());
+
+        TimePeriod firstTimePeriod = timePeriodRepository.findById(bookingTimePeriodList.get(0).getTimePeriodId()).orElseThrow(() -> new RecordNotFoundException(ErrorType.TIME_PERIOD_NOT_FOUND + id.toString()));
+        Integer duration = (bookingTimePeriodList.size() -1) * Constants.WORKING_TIME_SLOT /60;
+
+        return bookingMapper.bookingToGetBookingResponse(bookingFromDb,  firstTimePeriod.getStartTime(), duration, cleanerIds);
     }
 
     @Override

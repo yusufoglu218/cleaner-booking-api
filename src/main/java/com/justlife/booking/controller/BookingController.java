@@ -2,6 +2,7 @@ package com.justlife.booking.controller;
 
 import com.justlife.booking.dto.BookingSaveRequest;
 import com.justlife.booking.dto.BookingUpdateRequest;
+import com.justlife.booking.dto.GetBookingResponse;
 import com.justlife.booking.exception.RecordNotFoundException;
 import com.justlife.booking.model.Booking;
 import com.justlife.booking.service.BookingService;
@@ -62,14 +63,14 @@ public class BookingController {
         return bookingService.updateBooking(id, bookingUpdateRequest);
     }
 
-    @Operation(summary = "Get booking by id")
+    @Operation(summary = "Get booking details by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successful response", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Booking.class))}),
+            @ApiResponse(responseCode = "200", description = "Successful response", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = GetBookingResponse.class))}),
             @ApiResponse(responseCode = "500", description = "Internal Error", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Exception.class))})
     })
     @GetMapping(value = "{id}")
-    public Booking getBookingById(@Parameter(description = "Id of the booking") @PathVariable Long id) {
-        return bookingService.getBookingById(id);
+    public GetBookingResponse getBookingDetailById(@Parameter(description = "Id of the booking") @PathVariable Long id) {
+        return bookingService.getBookingDetailById(id);
     }
 
 }
