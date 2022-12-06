@@ -1,9 +1,9 @@
 # Cleaner Booking Rest Api
 
 Cleaner Booking rest api that includes the following opearations using spring boot and mySql DB.
-- Retrieve available cleaner list to book
-- Book available one or more cleaners 
-- Retrieve book detail
+- Retrieving available cleaner list to book
+- Booking with one or more cleaners 
+- Retrieving booking detail
 
 
 ## Prerequisites
