@@ -3,6 +3,7 @@ package com.justlife.booking.service;
 import com.justlife.booking.constant.TestConstants;
 import com.justlife.booking.dto.BookingSaveRequest;
 import com.justlife.booking.dto.BookingUpdateRequest;
+import com.justlife.booking.dto.GetBookingResponse;
 import com.justlife.booking.exception.ErrorType;
 import com.justlife.booking.exception.RecordNotFoundException;
 import com.justlife.booking.mapper.BookingMapper;
@@ -83,19 +84,26 @@ public class BookingServiceImplTest {
     }
 
     @Test
-    public void getBookingById_OK() {
+    public void getBookingDetailById_OK() {
+        GetBookingResponse getBookingResponse = TestUtils.createGetBookingResponse();
         Booking bookingTest = TestUtils.createBooking();
-        when(bookingRepository.findById(TestConstants.BOOKING_ID)).thenReturn(java.util.Optional.ofNullable(bookingTest));
-        Booking bookingFromService = bookingServiceImpl.getBookingById(TestConstants.BOOKING_ID);
 
-        Assertions.assertEquals(bookingTest, bookingFromService);
+        when(bookingRepository.findById(TestConstants.BOOKING_ID)).thenReturn(java.util.Optional.ofNullable(bookingTest));
+        when(bookingTimePeriodService.getBookingTimePeriodListByBookingId(TestConstants.BOOKING_ID)).thenReturn(TestUtils.createBookingTimePeriodListWithSamePeriodId());
+        when(timePeriodRepository.findById(TestConstants.TIME_PERIOD_ID_LIST.get(0))).thenReturn(java.util.Optional.ofNullable(TestUtils.createTimePeriod()));
+        when(bookingMapper.bookingToGetBookingResponse(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any())).thenReturn(getBookingResponse);
+        when(bookingCleanerRepository.getBookingBookingCleanerByBookingId(Mockito.any())).thenReturn(TestUtils.createBookingCleanerList());
+
+        GetBookingResponse getBookingResponseFromService = bookingServiceImpl.getBookingDetailById(TestConstants.BOOKING_ID);
+
+        Assertions.assertEquals(getBookingResponse, getBookingResponseFromService);
     }
 
     @Test
     public void getBookingById_NOT_FOUND() {
         when(bookingRepository.findById(TestConstants.BOOKING_ID)).thenThrow(new RecordNotFoundException(ErrorType.BOOKING_NOT_FOUND + TestConstants.BOOKING_ID.toString()));
         RecordNotFoundException thrown = Assertions.assertThrows(RecordNotFoundException.class, () -> {
-            bookingServiceImpl.getBookingById(TestConstants.BOOKING_ID);
+            bookingServiceImpl.getBookingDetailById(TestConstants.BOOKING_ID);
         });
 
         assertEquals(ErrorType.BOOKING_NOT_FOUND + TestConstants.BOOKING_ID.toString(), thrown.getMessage());
