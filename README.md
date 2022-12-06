@@ -98,7 +98,7 @@ and try below command in terminal
 |---|---|---|
 |`GET`|http://localhost:8080/api/v1/cleaner/available?date={date}&startTime={startTime}&duration={duration}&numberOfCleaner={numberOfCleaner} | Get available cleaner list |
 
-#####Postman Collection
+#### Postman Collection
 Postman collection file for all operations: [Cleaner-Booking-Api.postman_collection.json](src/main/resources/postman/Cleaner-Booking-Api.postman_collection.json)
 
 ### Database ER Diagram
