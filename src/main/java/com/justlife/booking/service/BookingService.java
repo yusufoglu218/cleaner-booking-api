@@ -2,6 +2,7 @@ package com.justlife.booking.service;
 
 import com.justlife.booking.dto.BookingSaveRequest;
 import com.justlife.booking.dto.BookingUpdateRequest;
+import com.justlife.booking.dto.GetBookingResponse;
 import com.justlife.booking.model.Booking;
 import com.justlife.booking.model.BookingCleaner;
 
@@ -28,11 +29,11 @@ public interface BookingService {
     Booking updateBooking(Long id, BookingUpdateRequest bookingUpdateRequest);
 
     /**
-     * Get booking by id. If the booking does not exists with the id then not found exception is thrown.
+     * Get booking details by id. If the booking does not exists with the id then not found exception is thrown.
      * @param id booking id to find
-     * @return found booking object
+     * @return GetBookingResponse object
      */
-    Booking getBookingById(Long id);
+    GetBookingResponse getBookingDetailById(Long id);
 
     /**
      * Create and save BookingCleaner list by parameters
